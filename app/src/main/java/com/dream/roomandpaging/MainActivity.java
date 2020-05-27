@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.paging.PagedList;
 import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -60,7 +61,11 @@ public class MainActivity extends AppCompatActivity {
                 peopleAdapter.submitList(people);
             }
         });
+        initView();
+        initSwipeToDel();
+    }
 
+    private void initView() {
         findViewById(R.id.tv_add).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,6 +85,30 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+    }
 
+    private void initSwipeToDel(){
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new ItemTouchHelper.Callback() {
+            @Override
+            public int getMovementFlags(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
+                // 上下拖动
+                int dragFlags = ItemTouchHelper.UP | ItemTouchHelper.DOWN;
+                // 向左滑动
+                int swipeFlags = ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT;
+                return makeMovementFlags(dragFlags, swipeFlags);
+            }
+
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                PeopleViewHolder holder = (PeopleViewHolder) viewHolder;
+                peopleViewModel.delPeople(holder.getmPeople());
+            }
+        });
+        itemTouchHelper.attachToRecyclerView(recy);
     }
 }

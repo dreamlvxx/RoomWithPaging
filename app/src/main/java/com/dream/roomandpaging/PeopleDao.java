@@ -2,6 +2,7 @@ package com.dream.roomandpaging;
 
 import androidx.paging.DataSource;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -14,5 +15,8 @@ public interface PeopleDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(People people);
+
+    @Delete
+    void delete(People people);
 
 }

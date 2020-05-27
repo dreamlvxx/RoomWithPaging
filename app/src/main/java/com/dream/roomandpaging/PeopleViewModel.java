@@ -42,4 +42,15 @@ public class PeopleViewModel extends AndroidViewModel {
         });
     }
 
+    public void delPeople(final People p){
+        Executors.newSingleThreadExecutor().execute(new Runnable() {
+            @Override
+            public void run() {
+                Log.e("xxx", "run: delPeople" );
+                dao.delete(p);
+            }
+        });
+
+    }
+
 }

@@ -16,6 +16,10 @@ public class PeopleViewHolder extends RecyclerView.ViewHolder {
     private TextView tv_name;
     private People mPeople;
 
+    public People getmPeople() {
+        return mPeople;
+    }
+
     public void bind(People p) {
         if (null != p) {
             this.mPeople = p;
