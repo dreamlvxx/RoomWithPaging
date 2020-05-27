@@ -21,11 +21,11 @@ public class PeopleViewModel extends AndroidViewModel {
         dao = PeopleDB.getInstance(application).getPeopleDao();
         listLiveData = new LivePagedListBuilder<>(dao.getAllPeople(),
                 new PagedList.Config.Builder()
-                        .setPageSize(10)
+                        .setPageSize(30)
                         .setEnablePlaceholders(true)
+                        .setInitialLoadSizeHint(30)
                         .build())
                 .build();
-
     }
 
     public LiveData<PagedList<People>> getData(){

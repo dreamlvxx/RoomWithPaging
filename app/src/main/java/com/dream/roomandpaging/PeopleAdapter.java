@@ -4,6 +4,8 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.paging.PagedList;
 import androidx.paging.PagedListAdapter;
 import androidx.recyclerview.widget.AsyncDifferConfig;
 import androidx.recyclerview.widget.DiffUtil;
@@ -28,5 +30,10 @@ public class PeopleAdapter extends PagedListAdapter<People,PeopleViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull PeopleViewHolder holder, int position) {
         holder.bind(getItem(position));
+    }
+
+    @Override
+    public void onCurrentListChanged(@Nullable PagedList<People> previousList, @Nullable PagedList<People> currentList) {
+        super.onCurrentListChanged(previousList, currentList);
     }
 }
