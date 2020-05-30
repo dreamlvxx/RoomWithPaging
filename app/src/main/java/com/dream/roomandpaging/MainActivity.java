@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         });
         initView();
         initSwipeToDel();
+        System.out.println("nothing no use");
     }
 
     private void initView() {
