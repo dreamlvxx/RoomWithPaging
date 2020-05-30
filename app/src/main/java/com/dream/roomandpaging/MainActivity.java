@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         initView();
         initSwipeToDel();
         System.out.println("nothing no use");
+        System.out.println("ss");
     }
 
     private void initView() {
